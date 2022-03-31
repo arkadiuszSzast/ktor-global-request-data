@@ -1,0 +1,26 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.6.10'
+}
+
+group 'com.szastarek.ktor.globalrequestdata'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "io.ktor:ktor-server-netty:$ktor_version"
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': "com.szastarek.ktor.globalrequestdata.MainKt"
+        )
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
